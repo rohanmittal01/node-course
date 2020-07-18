@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Chat App</title>
+        <link rel="stylesheet" href="/img/favicon.png">
+        <link rel="stylesheet" href="styles.min.css">
+        <style>
+            #text-box{
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+           <!-- <div class="centered-form">
+                <div class="centered-form__box">
+                    <h1>Join</h1>
+                    <form action="/chat.html">
+                        <label>Display name</label>
+                        <input type="text" name="username" placeholder="Display Name" required>
+                        <label>Room</label>
+                        <input type="text" name="room" placeholder="Room" required>
+                        <button>Join</button>
+                    </form>
+                </div>
+           </div> -->
+           <div class="centered-form">
+            <div class="centered-form__box">
+                <h1>Join</h1>
+                <form action="/chat.html">
+                    <label>Display name</label>
+                    <input type="text" name="username" placeholder="Display Name" required>
+                    <label>Room</label>
+                    <input type="button" value="custom room code" name='custom_room' onclick = "onCustomRoom()" style="background-color: cadetblue;margin-bottom: 0;"></button>
+                    <div id="text-box"><input type="text" name="room" placeholder="Room"></div>
+                    <input type="button" value="search exisitng rooms" name="search_room" onclick = "return onSearchRoom();" style="background-color:darksalmon;"></button>
+                  
+                    <button>Join</button>
+                </form>
+            </div>
+       </div>
+       <script>
+           function onCustomRoom(){
+               var x = document.getElementById('text-box')
+               if(x.style.display==='none'){
+                    x.style.display == 'block';
+               } else{
+                   x.style.display == 'none'
+               }
+           }
+       </script>
+    </body>
+</html>
