@@ -1,7 +1,8 @@
 const express = require('express')
 require('./db/mongoose')
-const User = require('./models/user')
-const Category = require('./models/category')
+const userRouter = require('./routers/user')
+const categoryRouter = require('./routers/categories')
+const productsRouter = require('./routers/products')
 const Product = require('./models/products')
 const Orders = require('./models/orders')
 const Cart = require('./models/shopping-cart')
@@ -9,94 +10,16 @@ const Cart = require('./models/shopping-cart')
 const app = express()
 const port = process.env.PORT || 3000
 
+
+var cors = require('cors')
+app.use(cors())
 app.use(express.json())
-
-app.post('/users', (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    console.log(req.body)
-    const users = new User(req.body)
-    users.save().then(() => {
-        res.status(201)
-        res.send(users)
-    }).catch((e) => {
-        res.status(400)
-        res.send(e)
-    })
-})
+app.use(userRouter)
+app.use(categoryRouter)
+app.use(productsRouter)
 
 
-app.get('/users', (req,res) => {
 
-    res.header("Access-Control-Allow-Origin", "*");
-    User.find({}).then((users) => {
-        res.send(users)
-    }).catch((e) => {
-        res.status(500)
-        res.send()
-    })
-})
-
-app.get('/users/:id', (req,res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    const _id = req.params.id
-    User.findById(_id).then((user) => {
-        if(!user){
-            return res.status(404).send()
-        }
-        res.status(200).send(user)
-    }).catch((e) => {
-        res.status(500).send()
-    })
-})
-
-
-app.post('/categories', (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    console.log(req.body)
-    const category = new Category(req.body)
-    category.save().then(() => {
-        res.status(201)
-        res.send(category)
-    }).catch((e) => {
-        res.status(400)
-        res.send(e)
-    })
-})
-
-app.get('/categories', (req,res) => {
-
-    res.header("Access-Control-Allow-Origin", "*");
-    Category.find({}).then((categories) => {
-        res.send(categories)
-    }).catch((e) => {
-        res.status(500)
-        res.send()
-    })
-})
-
-app.post('/products', (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    console.log(req.body)
-    const products = new Product(req.body)
-    products.save().then(() => {
-        res.status(201)
-        res.send(products)
-    }).catch((e) => {
-        res.status(400)
-        res.send(e)
-    })
-})
-
-app.get('/products', (req,res) => {
-
-    res.header("Access-Control-Allow-Origin", "*");
-    Product.find({}).then((products) => {
-        res.send(products)
-    }).catch((e) => {
-        res.status(500)
-        res.send()
-    })
-})
 
 app.post('/orders', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
