@@ -4,6 +4,7 @@ const validator = require('validator')
 const Category = mongoose.model('Category', {
     key: {
         type: String,
+        unique: true,
         required: true,
         trim: true
     },

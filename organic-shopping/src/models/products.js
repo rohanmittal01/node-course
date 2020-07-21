@@ -9,6 +9,7 @@ const Product = mongoose.model('Product', {
     },
     category: {
         type: String,
+        unique: true,
         required: true,
         trim: true
     },
