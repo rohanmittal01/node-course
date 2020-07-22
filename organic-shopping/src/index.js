@@ -3,7 +3,7 @@ require('./db/mongoose')
 const userRouter = require('./routers/user')
 const categoryRouter = require('./routers/categories')
 const productsRouter = require('./routers/products')
-const Product = require('./models/products')
+const deliveryPersonRouter = require('./routers/deliveryperson')
 const Orders = require('./models/orders')
 const Cart = require('./models/shopping-cart')
 // const Task = require('./models/task')
@@ -17,8 +17,7 @@ app.use(express.json())
 app.use(userRouter)
 app.use(categoryRouter)
 app.use(productsRouter)
-
-
+app.use(deliveryPersonRouter)
 
 
 app.post('/orders', (req, res) => {

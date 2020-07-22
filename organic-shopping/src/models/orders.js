@@ -25,6 +25,16 @@ const Orders = mongoose.model('Order', {
             required: true,
             trim: true 
         },
+        state: {
+            type: String,
+            required: true,
+            trim: true 
+        },
+        country: {
+            type: String,
+            required: true,
+            trim: true 
+        },
         name: {
             type: String,
             required: true,
@@ -57,6 +67,10 @@ const Orders = mongoose.model('Order', {
             }
         }
     }],
+    totalAmount: {
+        type: Number,
+        required: true
+    },
     deliveryPerson: {
         type: String,
         required: true,

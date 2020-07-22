@@ -11,6 +11,22 @@ const DeliveryPerson = mongoose.model('Delivery Persons', {
         type: Date,
         required: true
     },
+    address: {
+        addressLine1: {
+            type: String,
+            required: true,
+            trim: true 
+        },
+        addressLine2: {
+            type: String,
+            trim: true 
+        },
+        city: {
+            type: String,
+            required: true,
+            trim: true 
+        },
+    },
    isActive: {
        type: Boolean,
        required: true

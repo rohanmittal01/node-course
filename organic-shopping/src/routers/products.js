@@ -28,20 +28,20 @@ router.get('/products', (req,res) => {
 })
 
 router.get('/products/:id', async (req,res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     const _id = req.params.id
-    try{
-        const product = await Product.findById(_id)
-        if(!prodcut){
-            return res.status(404).send()
+        try{
+            const product = await Product.findById(_id)
+            if(!product){
+                return res.status(404).send()
+            }
+            res.status(200).send(product)
+        }catch(e){
+            res.status(500).send(e)
         }
-        res.send(product)
-    }catch(e){
-        res.status(500).send()
-    }
-
 })
 
-router.patch('/product/:id', async (req,res) => {
+router.patch('/products/:id', async (req,res) => {
     try{
         const product = await Product.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true})
         if(!product){
@@ -50,6 +50,19 @@ router.patch('/product/:id', async (req,res) => {
         res.send(product)
     }catch(e){
         res.status(400).send(e)
+    }
+})
+
+router.delete('/products/:id', async (req, res) => {
+    try{
+        const product = await Product.findByIdAndDelete(req.params.id);
+        console.log(product)
+        if(!product){
+            return res.status(404).send()
+        }
+        res.send(product)
+    }catch{
+        res.status(500).send()
     }
 })
 
