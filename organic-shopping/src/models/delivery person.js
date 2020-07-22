@@ -26,6 +26,16 @@ const DeliveryPerson = mongoose.model('Delivery Persons', {
             required: true,
             trim: true 
         },
+        state: {
+            type: String,
+            required: true,
+            trim: true 
+        },
+        country: {
+            type: String,
+            required: true,
+            trim: true 
+        }
     },
    isActive: {
        type: Boolean,
