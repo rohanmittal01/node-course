@@ -32,7 +32,7 @@ router.get('/deliveryperson/:id', async (req,res) => {
     res.header("Access-Control-Allow-Origin", "*");
     const _id = req.params.id
         try{
-            const deliveryperson = await deliveryperson.findById(_id)
+            const deliveryperson = await DeliveryPerson.findById(_id)
             if(!deliveryperson){
                 return res.status(404).send()
             }

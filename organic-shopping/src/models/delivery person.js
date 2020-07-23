@@ -7,6 +7,10 @@ const DeliveryPerson = mongoose.model('Delivery Persons', {
         required: true,
         trim: true
     },
+    phoneNumber: {
+        type: Number,
+        required: true
+    },
     dateJoined: {
         type: Date,
         required: true
@@ -40,7 +44,25 @@ const DeliveryPerson = mongoose.model('Delivery Persons', {
    isActive: {
        type: Boolean,
        required: true
-   } 
+   },
+   dateAdded: {
+       type: Date,
+       required: true
+   },
+   addedBy: {
+       type: String,
+       required: true,
+       trim: true
+   },
+   modifiedDate: {
+       type: Date,
+       required: true
+   },
+   modifiedBy: {
+       type: String,
+       required: true,
+       trim: true
+   }
 })
 
 module.exports = DeliveryPerson

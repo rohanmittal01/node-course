@@ -27,6 +27,24 @@ const Product = mongoose.model('Product', {
                 throw new Error('Price must be a positive integer')
             }
         }
+    },
+    dateAdded: {
+        type: Date,
+        required: true
+    },
+    addedBy: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    modifiedDate: {
+        type: Date,
+        required: true
+    },
+    modifiedBy: {
+        type: String,
+        required: true,
+        trim: true
     }
 })
 

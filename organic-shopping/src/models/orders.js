@@ -10,6 +10,10 @@ const Orders = mongoose.model('Order', {
         type: Date,
         required: true
     },
+    phoneNumber: {
+        type: Number,
+        requireD: true
+    },
     shipping: {
         addressLine1: {
             type: String,
