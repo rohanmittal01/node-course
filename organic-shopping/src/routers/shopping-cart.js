@@ -33,6 +33,18 @@ router.get('/shopping-cart/:id', async (req,res) => {
     }
 })
 
+router.patch('/shopping-cart/:id', async (req,res) => {
+    try{
+        const cart = await Cart.findOneAndUpdate({userId: req.params.id}, req.body, {new: true, runValidators: true})
+        if(!cart){
+            return res.status(404).send()
+        }
+        res.send(cart)
+    }catch(e){
+        res.status(400).send(e)
+    }
+})
+
 router.delete('/shopping-cart/:id', async (req, res) => {
     try{
         const cart = await Cart.findOneAndDelete({userId: req.params.id});
