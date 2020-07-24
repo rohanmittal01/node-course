@@ -55,7 +55,7 @@ const Orders = mongoose.model('Order', {
                 }
             }
         },
-        totalPrice: {
+        price: {
             type: Number,
             required: true,
             default: 0,
@@ -66,12 +66,23 @@ const Orders = mongoose.model('Order', {
             }
         }
     }],
-    deliveryCharges: {
-        type: Number,
-        default: 20
+    additionalCharges: {
+        deliveryCharges: {
+            type: Number,
+            default: 20
+        },
+        taxes: {
+            type: Number,
+            required: true
+        }
     },
     totalAmount: {
         type: Number,
+        required: true
+    },
+    status: {
+        type: String,
+        default: 'Order Placed',
         required: true
     },
     deliveryPerson: {
