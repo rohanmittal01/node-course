@@ -66,6 +66,10 @@ const Orders = mongoose.model('Order', {
             }
         }
     }],
+    deliveryCharges: {
+        type: Number,
+        default: 20
+    },
     totalAmount: {
         type: Number,
         required: true
