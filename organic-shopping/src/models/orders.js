@@ -34,6 +34,11 @@ const Orders = mongoose.model('Order', {
             required: true,
             trim: true 
         },
+        country: {
+            type: String,
+            required: true,
+            trim: true 
+        },
         name: {
             type: String,
             required: true,
