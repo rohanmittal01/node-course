@@ -48,18 +48,21 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-var mailOptions = {
-  from: 'rohanmittalofficial@gmail.com',
-  to: 'rohanmittal01@gmail.com',
-  subject: 'Sending Email using Node.js',
-  html: '<b>Woohoo!</b>'
-};
 
-app.get('/sendmail', (req,res) => {
+
+app.post('/sendmail', (req,res) => {
     res.header("Access-Control-Allow-Origin", "*");
+  var message = req.body
+    var mailOptions = {
+      from: 'rohanmittalofficial@gmail.com',
+      to: 'rohanmittal01@gmail.com',
+      subject: 'Sending Email using Node.js',
+      html: '<body style="padding: 20px; background-color: green; color: white;font-family: Helvetica; text-align: center">Welcome to Organix, <b>'+message.name+'</b><br><br><h2>Your Email Verification code is <b>'+message.code+'</b></h2><br>Please use this code to verify your account. <br><br>Best Regards,<br>Organix Team</body>'
+    };
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
+          res.send({error, message});
         } else {
           console.log('Email sent: ' + info.response);
           res.send('Email sent successfully!')
