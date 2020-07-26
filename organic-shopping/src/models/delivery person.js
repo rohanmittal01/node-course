@@ -11,6 +11,10 @@ const DeliveryPerson = mongoose.model('Delivery Persons', {
         type: Number,
         required: true
     },
+    gender: {
+        type: String,
+        required: true
+    },
     dateJoined: {
         type: Date,
         required: true
