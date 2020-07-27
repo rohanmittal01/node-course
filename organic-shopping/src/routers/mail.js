@@ -17,7 +17,7 @@ router.post("/register", (req, res) => {
   var mailOptions = {
     from: "rohanmittalofficial@gmail.com",
     to: message.email,
-    subject: "Sending Email using Node.js",
+    subject: "Organix - Registration Verification",
     html:
       '<body style="padding: 20px; background-color: green; color: white;font-family: Helvetica; text-align: center">Welcome to Organix, <b>' +
       message.name +
@@ -37,13 +37,40 @@ router.post("/register", (req, res) => {
   });
 });
 
+router.post("/verify-order", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  var message = req.body;
+  var mailOptions = {
+    from: "rohanmittalofficial@gmail.com",
+    to: message.email,
+    subject: "Organix - Order Verification",
+    html:
+      '<body style="padding: 20px; background-color: green; color: white;font-family: Helvetica; text-align: center">Welcome to Organix, <b>' +
+      message.name +
+      "</b><br><br><h2>Your Order Verification code is <b>" +
+      message.code +
+      "</b></h2><br>Please use this code to verify and confirm your Order. <br><br>Best Regards,<br>Organix Team</body>",
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+      res.send({ error, message });
+    } else {
+      console.log("Email sent: " + info.response);
+      res.status(201).send("Email sent successfully!");
+    }
+  });
+});
+
+
 router.post("/send-invoice", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   var message = req.body;
   var mailOptions = {
     from: "rohanmittalofficial@gmail.com",
     to: message.email,
-    subject: "Sending Email using Node.js",
+    subject: "Organix - Order Invoice",
     html:
       '<body style="padding: 20px; background-color: green; color: white;font-family: Helvetica; text-align: center"><h1>Thank you for ordering on Organix, <b>' +
       message.name +
