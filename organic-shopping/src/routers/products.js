@@ -16,7 +16,18 @@ router.post('/products', (req, res) => {
     })
 })
 
-router.get('/products', (req,res) => {
+router.get('/products/available', (req,res) => {
+
+    res.header("Access-Control-Allow-Origin", "*");
+    Product.find({isAvailable: true}).then((products) => {
+        res.send(products)
+    }).catch((e) => {
+        res.status(500)
+        res.send()
+    })
+})
+
+router.get('/products/all', (req,res) => {
 
     res.header("Access-Control-Allow-Origin", "*");
     Product.find({}).then((products) => {
