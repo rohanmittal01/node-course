@@ -7,6 +7,7 @@ const productsRouter = require('./routers/products')
 const deliveryPersonRouter = require('./routers/deliveryperson')
 const cartRouter = require('./routers/shopping-cart')
 const mailRouter = require('./routers/mail')
+const orderRouter = require('./routers/orders')
 const Orders = require('./models/orders')
 const bannerRouter = require('./routers/banner') 
 const Cart = require('./models/shopping-cart')
@@ -26,6 +27,7 @@ app.use(deliveryPersonRouter)
 app.use(cartRouter)
 app.use(bannerRouter)
 app.use(mailRouter)
+// app.use(orderRouter);
 
 app.post('/orders', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");

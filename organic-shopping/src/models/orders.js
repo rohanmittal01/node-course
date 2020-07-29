@@ -94,6 +94,18 @@ const Orders = mongoose.model('Order', {
         type: String,
         required: true,
         trim: true
+    },
+    card: {
+       number: {
+           type: String,
+           required: true,
+           trim: true
+       },
+       name: {
+        type: String,
+        required: true,
+        trim: true
+       }
     }
 })
 
