@@ -28,11 +28,12 @@ router.get('/orders', (req,res) => {
     })
 })
 
-router.get('/orders/:id', async (req,res) => {
+router.get('/orders/:user', async (req,res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    const _id = req.params.id
+    const _id = req.params.user
+    console.log(_id);
         try{
-            const orders = await Orders.findById(_id)
+            const orders = await Orders.find({userId: _id})
             if(!orders){
                 return res.status(404).send()
             }
