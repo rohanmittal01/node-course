@@ -12,7 +12,7 @@ const Orders = mongoose.model('Order', {
     },
     phoneNumber: {
         type: Number,
-        requireD: true
+        required: true
     },
     shipping: {
         addressLine1: {
