@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
-const Farmers = mongoose.model("Delivery Persons", {
+const Farmers = mongoose.model("Farmers", {
   imageUrl: {
     type: String,
     required: true,
@@ -20,8 +20,12 @@ const Farmers = mongoose.model("Delivery Persons", {
     type: String,
     required: true,
   },
-  dateJoined: {
-    type: Date,
+  age: {
+      type: Number,
+      required: true
+  },
+  experience: {
+    type: Number,
     required: true,
   },
   address: {
@@ -49,6 +53,11 @@ const Farmers = mongoose.model("Delivery Persons", {
       required: true,
       trim: true,
     },
+  },
+  expertise: {
+      type: String,
+      required: true,
+      trim: true,
   },
   price: {
     type: Number,

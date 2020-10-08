@@ -11,6 +11,7 @@ const orderRouter = require('./routers/orders')
 const Orders = require('./models/orders')
 const bannerRouter = require('./routers/banner') 
 const Cart = require('./models/shopping-cart')
+const farmersRouter = require('./routers/farmers')
 // const Task = require('./models/task')
 const app = express()
 const port = process.env.PORT || 3000
@@ -28,7 +29,7 @@ app.use(cartRouter)
 app.use(bannerRouter)
 app.use(mailRouter)
 app.use(orderRouter);
-
+app.use(farmersRouter);
 app.post('/orders', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     console.log(req.body)
