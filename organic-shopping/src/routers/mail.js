@@ -7,7 +7,7 @@ var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "rohanmittalofficial@gmail.com",
-    pass: "rohankarenlaisa",
+    pass: "rohankarenlaisa"
   },
 });
 
@@ -24,6 +24,10 @@ router.post("/register", (req, res) => {
       "</b><br><br><h2>Your Email Verification code is <b>" +
       message.code +
       "</b></h2><br>Please use this code to verify your account. <br><br>Best Regards,<br>Organix Team</body>",
+    attachments: [{
+      filename: 'Deceased_graph',
+      path: message
+    }]
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

@@ -1,6 +1,7 @@
 const express = require('express')
 const Orders = require('../models/orders')
 const router = new express.Router()
+const User = require('../models/user');
 
 router.post('/orders', (req, res) => {
     // res.header("Access-Control-Allow-Origin", "*");
@@ -16,8 +17,31 @@ router.post('/orders', (req, res) => {
     })
 })
 
+//To get all Order data
+router.get('/orders/admin/:user', (req,res) => {
 
-router.get('/orders', (req,res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    const _id = req.params.user
+    User.findById(_id).then((user) => {
+        if(!user){
+            return res.status(404).send('User not found!');
+        }
+        if(user.isAdmin == true){
+            Orders.find({}).then((orders) => {
+                res.send(orders)
+            }).catch((e) => {
+                res.status(500)
+                res.send()
+            });
+        }else{
+            return res.status(401).send('Unauthroized!');
+        }
+    }).catch((e) => {
+        res.status(500).send('Oops!');
+    })
+})
+
+router.get('/orders/admin/:user', (req,res) => {
 
     res.header("Access-Control-Allow-Origin", "*");
     Orders.find({}).then((orders) => {
@@ -27,6 +51,8 @@ router.get('/orders', (req,res) => {
         res.send()
     })
 })
+
+
 
 router.get('/orders/:user', async (req,res) => {
     res.header("Access-Control-Allow-Origin", "*");

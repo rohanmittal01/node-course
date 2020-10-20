@@ -43,6 +43,20 @@ router.get('/orders/:user', async (req,res) => {
         }
 })
 
+router.get('/orders/id/:id', async (req,res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    const _id = req.params.id
+    console.log(_id);
+        try{
+            const orders = await Orders.findById(_id)
+            if(!orders){
+                return res.status(404).send()
+            }
+            res.status(200).send(orders)
+        }catch(e){
+            res.status(500).send(e)
+        }
+})
 
 router.patch('/orders/:id', async (req,res) => {
     try{

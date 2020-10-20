@@ -28,6 +28,17 @@ router.get('/deliveryperson', (req,res) => {
     })
 })
 
+router.get('/deliveryperson/available', (req,res) => {
+
+    res.header("Access-Control-Allow-Origin", "*");
+    DeliveryPerson.find({isActive: true}).then((deliveryperson) => {
+        res.send(deliveryperson)
+    }).catch((e) => {
+        res.status(500)
+        res.send()
+    })
+})
+
 router.get('/deliveryperson/:id', async (req,res) => {
     res.header("Access-Control-Allow-Origin", "*");
     const _id = req.params.id
