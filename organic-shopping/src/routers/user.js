@@ -6,6 +6,7 @@ const router = new express.Router()
 router.post('/users/register', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     console.log(req.body)
+    
     const users = new User(req.body)
     users.save().then(() => {
         res.status(201)

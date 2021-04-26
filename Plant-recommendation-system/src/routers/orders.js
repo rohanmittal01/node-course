@@ -41,16 +41,16 @@ router.get('/orders/admin/:user', (req,res) => {
     })
 })
 
-router.get('/orders/admin/:user', (req,res) => {
+// router.get('/orders/admin/:user', (req,res) => {
 
-    res.header("Access-Control-Allow-Origin", "*");
-    Orders.find({}).then((orders) => {
-        res.send(orders)
-    }).catch((e) => {
-        res.status(500)
-        res.send()
-    })
-})
+//     res.header("Access-Control-Allow-Origin", "*");
+//     Orders.find({}).then((orders) => {
+//         res.send(orders)
+//     }).catch((e) => {
+//         res.status(500)
+//         res.send()
+//     })
+// })
 
 
 
